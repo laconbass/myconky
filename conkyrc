@@ -59,16 +59,26 @@ TEXT
 ${offset 130}${voffset 170}${font Liberation bold:pixelsize=20}Orion ${offset -140}${voffset 20}${color fa6973}${font Liberation:pixelsize=20}Debian 8 (Jessie) 
 
 ${offset 700}${voffset -90}${color fa6973}${font Liberation:pixelsize=120}${time %H:%M}${font Liberation}${offset -480}${voffset 30}${color EAEAEA}${font Liberation:pixelsize=90}${time %a},${time %d} ${color EAEAEA}${font Liberation:pixelsize=70}${time  %b}${offset -400}${voffset 30}${font Liberation:pixelsize=12}${color FFA300}HD ${offset 9}$color${fs_free /} / ${fs_size /}${offset 30}${color FFA300}RAM ${offset 9}$color$mem / $memmax${offset 30}${color FFA300}CPU ${offset 9}$color${cpu cpu0}%
+
 ${image ~/.conky/rev-eng.png}
-${offset 220}${voffset -20}${color ffffff}${font Liberation:size=9:style=Bold}${exec whoami}@${nodename}
+
+${offset 220}${voffset -45}${color ffffff}${font Liberation:size=9:style=Bold}${exec whoami}@${nodename}
 ${offset 220}${color ffffff}Linux ${kernel}
-${offset 220}${color ffffff}Uptime :${uptime}${color ffffff}
-${offset 830}${voffset 100}${font Liberation:size=9:style=Bold}root : ${font Liberation:size=9}${fs_used /}/${fs_size /}
+${offset 220}${color ffffff}Uptime: ${uptime}${color ffffff}
+
+${offset 830}${voffset 100}${font Liberation:size=9:style=Bold}root: ${font Liberation:size=9}${fs_used /}/${fs_size /}
 ${offset 830}${voffset}${font Liberation:size=9:style=Bold}home: ${font Liberation:size=9}${fs_used /home}/${fs_size /home}
 ${offset 830}${voffset}${color ffffff}${font Liberation:size=9:style=Bold}swap: ${font Liberation:size=8} ${swap} / ${swapfree}
-${offset 370}${voffset -5}${color ffffff}${font Liberation:size=11}${top name 5} ${top mem 5}
 
-${offset 500}${voffset -140}${color ffffff}${font Liberation:size=9}${color fa6973}IP Address : ${color ffffff} ${addr eth0}
-${offset 500}${color ffffff}${font Liberation:size=9}${color fa6973}Down : ${color ffffff}${downspeed eth0} k/s 
-${offset 500}${color fa6973}Up: ${color ffffff}${upspeed eth0} k/s
-${offset 20}${voffset -260}${font Liberation:pixelsize=20}${color 4eafec}TO-DO List:${offset -20}${voffset}${font Liberation:pixelsize=12}${color ffffff}${tail ~/TODO 5}
+${offset 400}${voffset -60}${cpugraph 20,130 000000 ffffff}
+${offset 370}${voffset}${color ffffff}${font Liberation:size=11}${top name 5} ${top mem 5}
+
+${if_up eth0}
+${offset 400}${voffset -200}${font Orore:size=20}I${font}${offset 35}${voffset -5}$color eth0 » $color1${addr eth0}$color
+${offset 400}${voffset 5}${font Orore:size=20}J${font}${offset 40}${voffset -12}${downspeed eth0}
+${offset 400}${offset 40}${voffset -1}${font Laconic:size=10:condensed:bold}${color1}${totaldown eth0}$font${offset 92}${voffset -9}${downspeedgraph eth0 15,30}$color
+${offset 400}${font Orore:size=20}K${font}${offset 40}${voffset -12}${upspeed eth0}${alignr 5}
+${offset 400}${offset 40}${voffset -1}${font Laconic:size=10:condensed:bold}${color1}${totalup eth0}$font${offset 92}${voffset -9}${upspeedgraph eth0 15,30}$color
+${endif}
+
+${offset 20}${voffset -60}${font Liberation:pixelsize=20}${color 4eafec}TO-DO List:${offset -20}${voffset}${font Liberation:pixelsize=12}${color ffffff}${tail ~/TODO 5}
