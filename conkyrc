@@ -56,29 +56,34 @@ lua_draw_hook_pre clock_rings
 
 ## Adjust the values offset as per your requirements
 TEXT
-${offset 130}${voffset 170}${font Laconic:pixelsize=40}Orion ${offset -140}${voffset 20}${color fa6973}${font Laconic:pixelsize=20}Debian 8 (Jessie) 
+${offset 100}${voffset 170}${font Laconic:pixelsize=40}${nodename}
+${offset 100}${voffset -20}${color fa6973}${font Laconic:pixelsize=20}${tail /etc/debian_version 1}
 
-${offset 700}${voffset -90}${color fa6973}${font Laconic:pixelsize=160}${time %H:%M}${font Laconic}${offset -480}${voffset 30}${color EAEAEA}${font Laconic:pixelsize=120}${time %a},${time %d} ${color EAEAEA}${font Laconic:pixelsize=120}${time  %b}${offset -400}${voffset 50}${font Laconic:pixelsize=16}${color FFA300}HD ${offset 9}$color${fs_free /} / ${fs_size /}${offset 30}${color FFA300}RAM ${offset 9}$color$mem / $memmax${offset 30}${color FFA300}CPU ${offset 9}$color${cpu cpu0}%
+${offset 550}${voffset -180}${color fa6973}${font Laconic:pixelsize=160}${time %H:%M}${font Laconic}${offset -480}${voffset 30}${color EAEAEA}${font Laconic:pixelsize=120}${time %a},${time %d} ${color EAEAEA}${font Laconic:pixelsize=120}${time  %b}${offset -425}${voffset 70}${font Laconic:pixelsize=16}${color FFA300}HD ${offset 9}$color${fs_free /} / ${fs_size /}${offset 30}${color FFA300}RAM ${offset 9}$color$mem / $memmax${offset 30}${color FFA300}CPU ${offset 9}$color${cpu cpu0}%
 
 ${image ~/.conky/rev-eng.png}
 
-${offset 220}${voffset -100}${color ffffff}${font Laconic:size=12:style=Bold}${exec whoami}@${nodename}
+${offset 220}${voffset -30}${color ffffff}${font Laconic:size=12:bold}${exec whoami}@${nodename}
 ${offset 220}${color ffffff}Linux ${kernel}
 ${offset 220}${color ffffff}Uptime: ${uptime}${color ffffff}
 
-${offset 850}${voffset 80}${font Laconic:size=9:style=Bold}root: ${font Laconic:size=9}${fs_used /}/${fs_size /}
-${offset 850}${voffset}${font Laconic:size=9:style=Bold}home: ${font Laconic:size=9}${fs_used /home}/${fs_size /home}
-${offset 850}${voffset}${color ffffff}${font Laconic:size=9:style=Bold}swap: ${font Laconic:size=8} ${swap} / ${swapfree}
+${offset 825}${voffset 80}${font Laconic:size=12:bold}root: ${font Laconic:size=12}${fs_used /}/${fs_size /}
+${offset 825}${voffset}${font Laconic:size=12:bold}home: ${font Laconic:size=12}${fs_used /home}/${fs_size /home}
+${offset 825}${voffset}${color ffffff}${font Laconic:size=12:bold}swap: ${font Laconic:size=12} ${swap} / ${swapfree}
 
-${offset 370}${voffset -60}${cpugraph 30,150 000000 ffffff}
-${offset 370}${voffset}${color ffffff}${font Laconic:size=11}${top name 5} ${top mem 5}
+${offset 390}${voffset -40}${cpugraph 30,150 000000 ffffff}
+${offset 390}${voffset}${color ffffff}${font Laconic:size=11}${top name 5} ${top mem 5}
 
-${if_up eth0}
-${offset 400}${voffset -190}${font Orore:size=20}I${font}${offset 35}${voffset -10}${font Laconic:size=12}$color eth0 » $color1${addr eth0}${font}$color
-${offset 400}${voffset 5}${font Orore:size=20}J${font}${offset 40}${voffset -12}${font Laconic:size=12}${downspeed eth0}${font}
-${offset 400}${offset 40}${voffset -1}${font Laconic:size=10:condensed:bold}${color1}${totaldown eth0}$font${offset 92}${voffset -9}${downspeedgraph eth0 15,30}$color
-${offset 400}${font Orore:size=20}K${font}${offset 40}${voffset -12}${font Laconic:size=12}${upspeed eth0}${alignr 5}${font}
-${offset 400}${offset 40}${voffset -1}${font Laconic:size=10:condensed:bold}${color1}${totalup eth0}$font${offset 92}${voffset -9}${upspeedgraph eth0 15,30}$color
+${if_up wlan0}
+${offset 400}${voffset -220}${font Orore:size=20}I${font}${offset 20}${voffset -10}${font Laconic:size=12:bold}$color wlan0 » $color1${addr wlan0}${font}$color
+
+${offset 400}${voffset -2}${font Orore:size=20}J${font}${offset 20}${voffset -10}${font Laconic:size=12}${downspeed wlan0}${font}
+${offset 400}${offset 110}${voffset -14}${font Laconic:size=10:condensed:bold}${color1}${totaldown wlan0}$font${offset 5}${voffset -10}${downspeedgraph wlan0 20,75}$color
+
+${offset 400}${voffset -8}${font Orore:size=20}K${font}${offset 20}${voffset -10}${font Laconic:size=12}${upspeed wlan0}${alignr 5}${font}
+${offset 400}${offset 110}${voffset -14}${font Laconic:size=10:condensed:bold}${color1}${totalup wlan0}$font${offset 5}${voffset -10}${upspeedgraph wlan0 20,75}$color
 ${endif}
 
-${offset 20}${voffset -60}${font Laconic:pixelsize=40}${color 4eafec}TO-DO List:${offset -20}${voffset}${font Laconic:pixelsize=14:bold}${color ffffff}${tail ~/TODO 5}
+${offset 40}${voffset -300}${font Laconic:pixelsize=30:bold}${color 4eafec}TO-DO List:$color
+${offset 200}${voffset -35}${font Laconic:pixelsize=14:bold}${color ffffff}${tail ~/TODO 10}
+
