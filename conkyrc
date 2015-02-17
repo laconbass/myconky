@@ -38,7 +38,7 @@ gap_y 55
 draw_shades no
 draw_outline no
 draw_borders no
-draw_graph_borders no
+draw_graph_borders yes
 
 #Text settings #
 use_xft yes
@@ -54,36 +54,45 @@ default_color FFFFFF
 lua_load ~/.lua/scripts/haunted.lua
 lua_draw_hook_pre clock_rings
 
+lua_load ~/.lua/scripts/cpu_rings.lua
+lua_draw_hook_post main
+
 ## Adjust the values offset as per your requirements
 TEXT
+# DISTRO
 ${offset 100}${voffset 170}${font Laconic:pixelsize=40}${nodename}
 ${offset 100}${voffset -20}${color fa6973}${font Laconic:pixelsize=20}${tail /etc/debian_version 1}
 
+# DATE/TIME/CPU RINGS
 ${offset 550}${voffset -180}${color fa6973}${font Laconic:pixelsize=160}${time %H:%M}${font Laconic}${offset -480}${voffset 30}${color EAEAEA}${font Laconic:pixelsize=120}${time %a},${time %d} ${color EAEAEA}${font Laconic:pixelsize=120}${time  %b}${offset -425}${voffset 70}${font Laconic:pixelsize=16}${color FFA300}HD ${offset 9}$color${fs_free /} / ${fs_size /}${offset 30}${color FFA300}RAM ${offset 9}$color$mem / $memmax${offset 30}${color FFA300}CPU ${offset 9}$color${cpu cpu0}%
 
+# BACKGROUND
 ${image ~/.conky/rev-eng.png}
 
-${offset 220}${voffset -30}${color ffffff}${font Laconic:size=12:bold}${exec whoami}@${nodename}
+# HOST & USER
+${offset 220}${voffset -30}${color ffffff}${font Laconic:size=11:bold}${exec whoami}@${nodename}
 ${offset 220}${color ffffff}Linux ${kernel}
 ${offset 220}${color ffffff}Uptime: ${uptime}${color ffffff}
 
+# FS
 ${offset 825}${voffset 80}${font Laconic:size=12:bold}root: ${font Laconic:size=12}${fs_used /}/${fs_size /}
 ${offset 825}${voffset}${font Laconic:size=12:bold}home: ${font Laconic:size=12}${fs_used /home}/${fs_size /home}
 ${offset 825}${voffset}${color ffffff}${font Laconic:size=12:bold}swap: ${font Laconic:size=12} ${swap} / ${swapfree}
 
-${offset 390}${voffset -40}${cpugraph 30,150 000000 ffffff}
+# CPU LINEAL GRAPH
+${offset 390}${voffset -50}${cpugraph 30,150 000000 ffffff}
 ${offset 390}${voffset}${color ffffff}${font Laconic:size=11}${top name 5} ${top mem 5}
 
-${if_up wlan0}
-${offset 400}${voffset -220}${font Orore:size=20}I${font}${offset 20}${voffset -10}${font Laconic:size=12:bold}$color wlan0 » $color1${addr wlan0}${font}$color
-
-${offset 400}${voffset -2}${font Orore:size=20}J${font}${offset 20}${voffset -10}${font Laconic:size=12}${downspeed wlan0}${font}
-${offset 400}${offset 110}${voffset -14}${font Laconic:size=10:condensed:bold}${color1}${totaldown wlan0}$font${offset 5}${voffset -10}${downspeedgraph wlan0 20,75}$color
-
-${offset 400}${voffset -8}${font Orore:size=20}K${font}${offset 20}${voffset -10}${font Laconic:size=12}${upspeed wlan0}${alignr 5}${font}
-${offset 400}${offset 110}${voffset -14}${font Laconic:size=10:condensed:bold}${color1}${totalup wlan0}$font${offset 5}${voffset -10}${upspeedgraph wlan0 20,75}$color
+# NETWORK
+${if_up eth0}
+${offset 390}${voffset -220}$color${font Santana:size=9:style=Bold}IP Address : ${addr eth0}
+${offset 392}${voffset 0}$color${font Santana:size=8}TCP Connections : ${tcp_portmon 1 65535 count}
+${offset 392}${voffset 0}${font Santana:size=8}${color f4732d}Down : ${offset 9}$color${downspeed eth0}/s ${offset 8}${color ebff46}Up : ${offset 9}$color${upspeed eth0} /s
+${offset 392}${voffset 0}${color ffffff}${font Santana:size=8}Interface eth0 Usage :
+${offset 392}${voffset -2}$color${font Santana:size=8}${color ffffff}${downspeedgraph eth0 26,200 b7b7b7 f4732d}
+${offset 392}${voffset -5}${color ffffff}${upspeedgraph eth0 26,200 b7b7b7 ebff46}
 ${endif}
 
+# TODO
 ${offset 40}${voffset -300}${font Laconic:pixelsize=30:bold}${color 4eafec}TO-DO List:$color
 ${offset 200}${voffset -35}${font Laconic:pixelsize=14:bold}${color ffffff}${tail ~/TODO 10}
-
