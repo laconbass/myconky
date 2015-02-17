@@ -7,5 +7,6 @@ Installation:
 Move conkyrc to ~/.conkyrc
 Move conky to ~/.conky
 Move lua to ~/.lua
-Move Todo to ~/TODO
+Move config to ~/.config
+Move TODO to ~/TODO
 ```

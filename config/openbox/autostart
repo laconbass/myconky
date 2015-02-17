@@ -1,0 +1,26 @@
+# Programs that will run after Openbox has started
+
+xmodmap "~/.Xmodmap"
+
+mate-settings-daemon &
+
+# Set the wallpaper
+hsetroot -fill ~/Imaxes/horsehead_nebula.jpg &
+
+# Run a Composite manager
+# xcompmgr -c -t-5 -l-5 -r4.2 -o.55 &
+
+# xcompmgr -d "$DISPLAY" -f -F -I -O -c -r3 -o.60 -l0 -t0 -D3 &
+
+compton &
+
+# SCIM support (for typing non-english characters)
+scim -d &
+
+conky &
+
+# A panel for good times
+sleep 5 &
+fbpanel &
+
+# wbar &
