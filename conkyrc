@@ -80,16 +80,27 @@ ${offset 825}${voffset}${font Laconic:size=12:bold}home: ${font Laconic:size=12}
 ${offset 825}${voffset}${color ffffff}${font Laconic:size=12:bold}swap: ${font Laconic:size=12} ${swap} / ${swapfree}
 
 # CPU LINEAL GRAPH
-${offset 390}${voffset -50}${cpugraph 30,150 000000 ffffff}
-${offset 390}${voffset}${color ffffff}${font Laconic:size=11}${top name 5} ${top mem 5}
+${voffset -60}
+${offset 390}${font Laconic:size=11}${color}CPU Freq = @${freq_g (1)} GHz
+${offset 390}${font Laconic:size=10}${color7}CPU Temp = ${color3}${acpitemp} °F
+
+${offset 390}${voffset 5}${color ffffff}${font Laconic:size=10:bold} CPU 1:
+${offset 390}${color ffffff}${cpugraph cpu0 32,200 b7b7b7 f4732d}
+${offset 390}${voffset 0}${color ffffff}${font Laconic:size=10:bold} CPU 2:
+${offset 390}${color ffffff}${cpugraph cpu1 32,200 b7b7b7 ebff46}
+
+# CPU TOP
+${offset 390}${font Laconic:size=10}${color6} Top (CPU):${tab 2}${offset 9}${color}${top name 5} ${top cpu 5}
+
+# MEM TOP
+${offset 390}${font Laconic:size=10}${color6} Top (RAM):${tab 2}${offset 9}${color}${top_mem name 5} ${top_mem mem 5}
 
 # NETWORK
 ${if_up eth0}
-${offset 390}${voffset -220}$color${font Santana:size=9:style=Bold}IP Address : ${addr eth0}
-${offset 392}${voffset 0}$color${font Santana:size=8}TCP Connections : ${tcp_portmon 1 65535 count}
-${offset 392}${voffset 0}${font Santana:size=8}${color f4732d}Down : ${offset 9}$color${downspeed eth0}/s ${offset 8}${color ebff46}Up : ${offset 9}$color${upspeed eth0} /s
-${offset 392}${voffset 0}${color ffffff}${font Santana:size=8}Interface eth0 Usage :
-${offset 392}${voffset -2}$color${font Santana:size=8}${color ffffff}${downspeedgraph eth0 26,200 b7b7b7 f4732d}
+${offset 390}${voffset -395}$color${font Laconic:size=11:bold}IP Address eth0: ${addr eth0}
+${offset 392}${voffset 0}$color${font Laconic:size=10}TCP Connections: ${tcp_portmon 1 65535 count}
+${offset 392}${voffset 0}${font Laconic:size=10}${color f4732d}Down: ${offset 9}$color${downspeed eth0}/s ${offset 8}${color ebff46}Up: ${offset 9}$color${upspeed eth0} /s
+${offset 392}${voffset -2}$color${font Laconic:size=10}${color ffffff}${downspeedgraph eth0 26,200 b7b7b7 f4732d}
 ${offset 392}${voffset -5}${color ffffff}${upspeedgraph eth0 26,200 b7b7b7 ebff46}
 ${endif}
 
