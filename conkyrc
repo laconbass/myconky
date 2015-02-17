@@ -60,8 +60,8 @@ lua_draw_hook_post main
 ## Adjust the values offset as per your requirements
 TEXT
 # DISTRO
-${offset 100}${voffset 170}${font Laconic:pixelsize=40}${nodename}
-${offset 100}${voffset -20}${color fa6973}${font Laconic:pixelsize=20}${tail /etc/debian_version 1}
+${offset 40}${voffset 170}${font Laconic:pixelsize=25}${exec whoami}@${nodename}
+${offset 100}${voffset 0}${color fa6973}${font Laconic:pixelsize=20}Debian ${tail /etc/debian_version 1}
 
 # DATE/TIME/CPU RINGS
 ${offset 550}${voffset -180}${color fa6973}${font Laconic:pixelsize=160}${time %H:%M}${font Laconic}${offset -480}${voffset 30}${color EAEAEA}${font Laconic:pixelsize=120}${time %a},${time %d} ${color EAEAEA}${font Laconic:pixelsize=120}${time  %b}${offset -425}${voffset 70}${font Laconic:pixelsize=16}${color FFA300}HD ${offset 9}$color${fs_free /} / ${fs_size /}${offset 30}${color FFA300}RAM ${offset 9}$color$mem / $memmax${offset 30}${color FFA300}CPU ${offset 9}$color${cpu cpu0}%
@@ -69,13 +69,12 @@ ${offset 550}${voffset -180}${color fa6973}${font Laconic:pixelsize=160}${time %
 # BACKGROUND
 ${image ~/.conky/rev-eng.png}
 
-# HOST & USER
-${offset 220}${voffset -30}${color ffffff}${font Laconic:size=11:bold}${exec whoami}@${nodename}
-${offset 220}${color ffffff}Linux ${kernel}
-${offset 220}${color ffffff}Uptime: ${uptime}${color ffffff}
+# KERNEL & UPTIME
+${offset 440}${voffset -20}${color ffffff}Linux ${kernel}
+${offset 440}${color ffffff}Uptime: ${uptime}
 
 # FS
-${offset 825}${voffset 80}${font Laconic:size=12:bold}root: ${font Laconic:size=12}${fs_used /}/${fs_size /}
+${offset 825}${voffset 95}${font Laconic:size=12:bold}root: ${font Laconic:size=12}${fs_used /}/${fs_size /}
 ${offset 825}${voffset}${font Laconic:size=12:bold}home: ${font Laconic:size=12}${fs_used /home}/${fs_size /home}
 ${offset 825}${voffset}${color ffffff}${font Laconic:size=12:bold}swap: ${font Laconic:size=12} ${swap} / ${swapfree}
 
@@ -107,3 +106,4 @@ ${endif}
 # TODO
 ${offset 40}${voffset -300}${font Laconic:pixelsize=30:bold}${color 4eafec}TO-DO List:$color
 ${offset 200}${voffset -35}${font Laconic:pixelsize=14:bold}${color ffffff}${tail ~/TODO 10}
+
