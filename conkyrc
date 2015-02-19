@@ -60,50 +60,61 @@ lua_draw_hook_post main
 ## Adjust the values offset as per your requirements
 TEXT
 # DISTRO
-${offset 40}${voffset 170}${font Laconic:pixelsize=25}${exec whoami}@${nodename}
-${offset 100}${voffset 0}${color fa6973}${font Laconic:pixelsize=20}Debian ${tail /etc/debian_version 1}
+${offset 40}${voffset 170}${font Laconic:pixelsize=25:bold}${exec whoami}@${nodename}
+${offset 80}${voffset 0}${color fa6973}${font Laconic:pixelsize=20}Debian ${tail /etc/debian_version 1} (${machine})
 
 # DATE/TIME/CPU RINGS
-${offset 550}${voffset -180}${color fa6973}${font Laconic:pixelsize=160}${time %H:%M}${font Laconic}${offset -480}${voffset 30}${color EAEAEA}${font Laconic:pixelsize=120}${time %a},${time %d} ${color EAEAEA}${font Laconic:pixelsize=120}${time  %b}${offset -425}${voffset 70}${font Laconic:pixelsize=16}${color FFA300}HD ${offset 9}$color${fs_free /} / ${fs_size /}${offset 30}${color FFA300}RAM ${offset 9}$color$mem / $memmax${offset 30}${color FFA300}CPU ${offset 9}$color${cpu cpu0}%
+${offset 550}${voffset -180}${color fa6973}${font Laconic:pixelsize=160:bold}${time %H:%M}${font Laconic}${offset -480}${voffset 30}${color EAEAEA}${font Laconic:pixelsize=120}${time %a},${time %d} ${color EAEAEA}${font Laconic:pixelsize=120}${time  %b}${offset -500}${voffset 70}${font Laconic:pixelsize=16:bold}${color FFA300}HD ${offset 9}$color${fs_free /} / ${fs_size /}${offset 30}${color FFA300}RAM ${offset 9}$color$mem / $memmax${offset 30}${color FFA300}CPU ${offset 9}$color${cpu cpu0}%
 
 # BACKGROUND
 ${image ~/.conky/rev-eng.png}
 
 # KERNEL & UPTIME
-${offset 440}${voffset -20}${color ffffff}Linux ${kernel}
-${offset 440}${color ffffff}Uptime: ${uptime}
+${offset 440}${voffset -20}${color ffff00}${conky_build_arch}
+${offset 440}${color ffff00}Uptime: ${color ffffff}${uptime}
 
 # FS
-${offset 825}${voffset 95}${font Laconic:size=12:bold}root: ${font Laconic:size=12}${fs_used /}/${fs_size /}
-${offset 825}${voffset}${font Laconic:size=12:bold}home: ${font Laconic:size=12}${fs_used /home}/${fs_size /home}
-${offset 825}${voffset}${color ffffff}${font Laconic:size=12:bold}swap: ${font Laconic:size=12} ${swap} / ${swapfree}
+${offset 875}${voffset 95}${fs_bar 15,60 /} ${offset -60}${color f4732d}${font Laconic:size=10:bold}/root$color     ${font Laconic:size=12}${fs_used /} / ${fs_size /}
+${offset 875}${voffset}${fs_bar 15,60 /home} ${offset -60}${color f4732d}${font Laconic:size=10:bold}/home$color    ${font Laconic:size=12}${fs_used /home} / ${fs_size /home}
+${offset 875}${voffset}${swapbar 15,60 swap} ${offset -60}${color f4732d}${font Laconic:size=10:bold}swap$color     ${font Laconic:size=12}${swap} / ${swapfree}
 
 # CPU LINEAL GRAPH
-${voffset -60}
-${offset 390}${font Laconic:size=11}${color}CPU Freq = @${freq_g (1)} GHz
-${offset 390}${font Laconic:size=10}${color7}CPU Temp = ${color3}${acpitemp} °F
+${voffset -70}
+${offset 390}${font Laconic:size=11}${color ffff00}CPU Freq: ${color}@${freq_g (1)} GHz
+${offset 390}${font Laconic:size=10}${color ffff00}CPU Temp: ${color}${acpitemp} °F
 
-${offset 390}${voffset 5}${color ffffff}${font Laconic:size=10:bold} CPU 1:
-${offset 390}${color ffffff}${cpugraph cpu0 32,200 b7b7b7 f4732d}
-${offset 390}${voffset 0}${color ffffff}${font Laconic:size=10:bold} CPU 2:
-${offset 390}${color ffffff}${cpugraph cpu1 32,200 b7b7b7 ebff46}
+${voffset 0}
+${offset 390}${color f4732d}${font Laconic:size=10:bold} CPU 1:$color
+${offset 390}${voffset -30}${color ffffff}${cpugraph cpu0 32,200 b7b7b7 f4732d}
+${offset 390}${color f4732d}${font Laconic:size=10:bold} CPU 2:$color
+${offset 390}${voffset -30}${color ffffff}${cpugraph cpu1 32,200 b7b7b7 ebff46}
 
 # CPU TOP
-${offset 390}${font Laconic:size=10}${color6} Top (CPU):${tab 2}${offset 9}${color}${top name 5} ${top cpu 5}
+${offset 390}${voffset -15}${font Laconic:size=10}${color ffff00} Top (CPU):${tab 2}${offset 9}${color}${top name 5} ${top cpu 5}
+
+# MEM LINEAL GRAPH
+${offset 390}${voffset 10}${color f4732d}${font Laconic:size=10:bold} MEM:$color
+${offset 390}${voffset -30}${memgraph 32,200 b7b7b7 f4732d}
 
 # MEM TOP
-${offset 390}${font Laconic:size=10}${color6} Top (RAM):${tab 2}${offset 9}${color}${top_mem name 5} ${top_mem mem 5}
+${offset 390}${voffset -15}${font Laconic:size=10}${color ffff00} Top (RAM):${tab 2}${offset 9}${color}${top_mem name 5} ${top_mem mem 5}
+
+# LOAD GRAPH
+${offset 390}${color f4732d}${font Laconic:size=10:bold} System Load:$color
+${offset 390}${color ffffff}${loadgraph 32,200 b7b7b7 f4732d}
 
 # NETWORK
 ${if_up eth0}
-${offset 390}${voffset -395}$color${font Laconic:size=11:bold}IP Address eth0: ${addr eth0}
-${offset 392}${voffset 0}$color${font Laconic:size=10}TCP Connections: ${tcp_portmon 1 65535 count}
-${offset 392}${voffset 0}${font Laconic:size=10}${color f4732d}Down: ${offset 9}$color${downspeed eth0}/s ${offset 8}${color ebff46}Up: ${offset 9}$color${upspeed eth0} /s
-${offset 392}${voffset -2}$color${font Laconic:size=10}${color ffffff}${downspeedgraph eth0 26,200 b7b7b7 f4732d}
-${offset 392}${voffset -5}${color ffffff}${upspeedgraph eth0 26,200 b7b7b7 ebff46}
+${offset 390}${voffset -445}${color ffff00}${font Laconic:size=10:bold}Local IP eth0: ${color}${addr eth0}
+${offset 390}${color ffff00}Public IP: ${color}${execi 60 wget -O - -q icanhazip.com} ${color f4732d}Connections: ${offset 9}$color${tcp_portmon 1 65535 count}
+
+${offset 398}${color f4732d}${font Laconic:size=10}Down: ${offset 9}$color${downspeed eth0}/s
+${offset 390}${voffset -26}$color${downspeedgraph eth0 26,200 b7b7b7 f4732d}
+
+${offset 398}${color ebff46}${font Laconic:size=10}Up: ${offset 9}$color${upspeed eth0} /s
+${offset 390}${voffset -26}$color${upspeedgraph eth0 26,200 b7b7b7 ebff46}
 ${endif}
 
 # TODO
 ${offset 40}${voffset -300}${font Laconic:pixelsize=30:bold}${color 4eafec}TO-DO List:$color
 ${offset 200}${voffset -35}${font Laconic:pixelsize=14:bold}${color ffffff}${tail ~/TODO 10}
-
