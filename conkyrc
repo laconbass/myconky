@@ -83,7 +83,6 @@ ${voffset -70}
 ${offset 390}${font Laconic:size=11:bold}${color ffff00}CPU Freq: ${color}@${freq_g (1)} GHz
 ${offset 390}${font Laconic:size=11:bold}${color ffff00}CPU Temp: ${color}${acpitemp} °F
 
-${voffset 0}
 ${offset 398}${color f4732d}${font Laconic:size=10:bold}CPU 1:$color
 ${offset 390}${voffset -30}${color ffffff}${cpugraph cpu0 32,200 b7b7b7 f4732d}
 ${offset 398}${color ebff46}${font Laconic:size=10:bold}CPU 2:$color
@@ -100,12 +99,12 @@ ${offset 390}${voffset -30}${memgraph 32,200 b7b7b7 f4732d}
 ${offset 390}${voffset -15}${font Laconic:size=10}${color ffff00}Top (RAM):${tab 2}${offset 9}${color}${top_mem name 5} ${top_mem mem 5}
 
 # LOAD GRAPH
-${offset 390}${color f4732d}${font Laconic:size=10:bold}System Load:$color
+${offset 390}${color f4732d}${font Laconic:size=10:bold}System Load:$color ${loadavg}
 ${offset 390}${color ffffff}${loadgraph 32,200 b7b7b7 f4732d}
 
 # NETWORK
 ${if_up eth0}
-${offset 390}${voffset -445}${color ffff00}${font Laconic:size=10:bold}Local IP eth0: ${color}${addr eth0}
+${offset 390}${voffset -430}${color ffff00}${font Laconic:size=10:bold}Local IP eth0: ${color}${addr eth0}
 ${offset 390}${color ffff00}Public IP: ${color}${execi 60 wget -O - -q icanhazip.com} ${color f4732d}Connections: ${offset 9}$color${tcp_portmon 1 65535 count}
 
 ${offset 398}${color f4732d}${font Laconic:size=10:bold}Down: ${offset 9}$color${downspeed eth0}/s
