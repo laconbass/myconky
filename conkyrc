@@ -83,28 +83,28 @@ ${voffset -65}
 ${offset 390}${font Laconic:size=11:bold}${color ffff00}CPU Freq: ${color}@${freq_g (1)} GHz
 ${offset 390}${font Laconic:size=11:bold}${color ffff00}CPU Temp: ${color}${acpitemp} °F
 
-${offset 398}${color f4732d}${font Laconic:size=10:bold}CPU1:$color ${top name 5} ${top cpu 5}
-${offset 390}${voffset -26}${color ffffff}${cpugraph cpu0 26,200 b7b7b7 f4732d}
-${offset 398}${color ebff46}${font Laconic:size=10:bold}CPU2:$color ${top name 5} ${top cpu 5}
-${offset 390}${voffset -26}${color ffffff}${cpugraph cpu1 26,200 b7b7b7 ebff46}
+${offset 390}${color ffffff}${cpugraph cpu0 26,200 b7b7b7 f4732d}
+${offset 398}${voffset -26}${color f4732d}${font Laconic:size=10:bold}CPU0:$color ${top name 5} ${top cpu 5}
+${offset 390}${color ffffff}${cpugraph cpu1 26,200 b7b7b7 f4732d}
+${offset 398}${voffset -26}${color f4732d}${font Laconic:size=10:bold}CPU1:$color ${top name 5} ${top cpu 5}
 
 # MEM LINEAL GRAPH
-${offset 398}${color f4732d}${font Laconic:size=10:bold}RAM:$color ${top_mem name 5} ${top_mem mem 5}
-${offset 390}${voffset -26}${memgraph 26,200 b7b7b7 f4732d}
+${offset 390}${memgraph 26,200 b7b7b7 f4732d}
+${offset 398}${voffset -26}${color f4732d}${font Laconic:size=10:bold}RAM:$color ${top_mem name 5} ${top_mem mem 5}
 
 # LOAD GRAPH
-${offset 398}${color f4732d}${font Laconic:size=10:bold}System Load:$color ${loadavg}
-${offset 390}${voffset -26}${color ffffff}${loadgraph 26,200 b7b7b7 f4732d}
+${offset 390}${color ffffff}${loadgraph 26,200 b7b7b7 f4732d}
+${offset 398}${voffset -26}${color f4732d}${font Laconic:size=10:bold}System Load:$color ${loadavg}
 
 # NETWORK
 ${if_up wlan0}
 ${offset 390}${voffset -330}${color ffff00}${font Laconic:size=10:bold}Local IP wlan0: ${color}${addr wlan0}
 ${offset 390}${color ffff00}Public IP: ${color}${execi 60 wget -O - -q icanhazip.com} ${color f4732d}Connections: ${offset 9}$color${tcp_portmon 1 65535 count}
 
-${offset 398}${color f4732d}${font Laconic:size=10:bold}Down: ${offset 9}$color${downspeed wlan0}/s
-${offset 390}${voffset -26}$color${downspeedgraph wlan0 26,200 b7b7b7 f4732d}
-${offset 398}${color ebff46}${font Laconic:size=10:bold}Up: ${offset 9}$color${upspeed wlan0}/s
-${offset 390}${voffset -26}$color${upspeedgraph wlan0 26,200 b7b7b7 ebff46}
+${offset 390}$color${downspeedgraph wlan0 26,200 b7b7b7 f4732d}
+${offset 398}${voffset -26}${color f4732d}${font Laconic:size=10:bold}Down: ${offset 9}$color${downspeed wlan0}/s
+${offset 390}$color${upspeedgraph wlan0 26,200 b7b7b7 ebff46}
+${offset 398}${voffset -26}${color ebff46}${font Laconic:size=10:bold}Up: ${offset 9}$color${upspeed wlan0}/s
 ${endif}
 
 # TODO
