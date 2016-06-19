@@ -140,18 +140,17 @@ ${offset 760}${color ffff00}Public IP: ${color}${execi 60 wget -O - -q icanhazip
 #${offset 718}${voffset -26}${color ebff46}${font Laconic:size=10:bold}Up: ${offset 9}$color${upspeed wlan0}/s
 ${endif}
 
-# PROCESS LIST
-${offset 340}${voffset -15}${font Laconic:pixelsize=14:bold}${color 4eafec}Processes: ${running_processes}/${processes}
-
-# LOAD GRAPH
-${offset 340}${voffset -1}${color f4732d}${font Laconic:size=10:bold}System Load:$color ${loadavg}
-${offset 340}${color ffffff}${loadgraph 32,200 b7b7b7 f4732d}
+# TOTAL RUNNING PROCESS
+${offset 340}${voffset -48}${font Laconic:pixelsize=14:bold}${color 4eafec}Processes:  ${color ffffff}${running_processes}/${processes}
 
 # TOP PROCESS
-${offset 340}${voffset -130}${font Laconic:pixelsize=14:bold}${color 4eafec}Process Top:$color
-${offset 445}${voffset -15}${font Laconic:pixelsize=14:bold}${color ffffff}${top name 5}
+${offset 340}${voffset}${font Laconic:pixelsize=14:bold}${color 4eafec}Process Top:  ${color ffffff}${top name 5}
+
+# LOAD GRAPH
+${offset 340}${voffset}${color f4732d}${font Laconic:size=10:bold}System Load:$color ${loadavg}
+${offset 340}${color ffffff}${loadgraph 32,200 b7b7b7 f4732d}
 
 # SYSLOG
-${offset 340}${voffset 82}${font Laconic:pixelsize=14:bold}${color 4eafec}System Log:$color
+${offset 340}${voffset -10}${font Laconic:pixelsize=14:bold}${color 4eafec}System Log:$color
 ${offset 430}${voffset -15}${font Laconic:pixelsize=14}${color ffffff}${tail /var/log/syslog 1}
 ]]
