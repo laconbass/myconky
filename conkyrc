@@ -1,112 +1,157 @@
-# Conky Settings
-# background yes
-update_interval 1
+-- vim: ts=4 sw=4 noet ai cindent syntax=lua
+--[[
+Conky, a system monitor, based on torsmo
 
-cpu_avg_samples 2
-net_avg_samples 2
+Any original torsmo code is licensed under the BSD license
 
-override_utf8_locale yes
+All code written since the fork of torsmo is licensed under the GPL
 
-double_buffer yes
-no_buffers yes
+Please see COPYING for details
 
-text_buffer_size 2048
+Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
+Copyright (c) 2005-2012 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
+All rights reserved.
 
-temperature_unit celsius
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-#Window Specification
-own_window yes
-own_window_class Conky
-own_window_type normal
-own_window_transparent yes
-own_window_argb_visual yes
-own_window_argb_value 255 
-own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+]]
 
-border_inner_margin 0
-border_outer_margin 0
+conky.config = {
+    alignment = 'top_left',
+    background = false,
+    border_width = 0,
+	border_inner_margin = 0,
+	border_outer_margin = 0,
+    cpu_avg_samples = 2,
+	default_color = 'white',
+    default_outline_color = 'white',
+    default_shade_color = 'white',
+    draw_borders = false,
+    draw_graph_borders = false,
+    draw_outline = false,
+    draw_shades = false,
+	double_buffer = true,
+    use_xft = true,
+    font = 'Laconic:size=12',
+    gap_x = 0,
+    gap_y = 0,
+    minimum_height = 5,
+	minimum_width = 5,
+	maximum_width = 1366,
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = false,
+    out_to_stderr = false,
+    extra_newline = false,
+    own_window = true,
+    own_window_class = 'Conky',
+    own_window_type = 'normal',
+    own_window_transparent = true,
+	own_window_argb_visual = true,
+	own_window_argb_value = 255,
+	own_window_hints = 'undecorated,sticky,skip_taskbar,skip_pager,below',
+	override_utf8_locale = true,
+    stippled_borders = 0,
+	text_buffer_size = 2048,
+	temperature_unit = 'celsius',
+    update_interval = 1.0,
+    uppercase = false,
+    use_spacer = 'none',
+    show_graph_scale = false,
+    show_graph_range = false,
+	--[[ Lua Load ]]
+	lua_load = '~/.lua/scripts/rings.lua',
+	lua_draw_hook_pre = 'main',
+}
 
-# Adjust Resolution according to your screen
-minimum_size 1180 1024
-maximum_width 1280
-
-alignment tr
-gap_x 10
-gap_y 55
-
-#Graphics Settings #
-draw_shades no
-draw_outline no
-draw_borders no
-draw_graph_borders yes
-
-#Text settings #
-use_xft yes
-xftfont Laconic:size=8
-xftalpha 0.5
-
-uppercase no
-temperature_unit celsius
-
-default_color FFFFFF
-
-#Lua Load #
-lua_load ~/.lua/scripts/haunted.lua
-lua_draw_hook_pre clock_rings
-
-lua_load ~/.lua/scripts/cpu_rings.lua
-lua_draw_hook_post main
-
-## Adjust the values offset as per your requirements
-TEXT
-# DISTRO
-${offset 40}${voffset 170}${font Laconic:pixelsize=25:bold}${exec whoami}@${nodename}
-${offset 80}${voffset 0}${color fa6973}${font Laconic:pixelsize=20}Debian ${tail /etc/debian_version 1} (${machine})
-
-# DATE/TIME/CPU RINGS
-${offset 550}${voffset -180}${color fa6973}${font Laconic:pixelsize=160:bold}${time %H:%M}${font Laconic}${offset -480}${voffset 30}${color EAEAEA}${font Laconic:pixelsize=120}${time %a},${time %d} ${color EAEAEA}${font Laconic:pixelsize=120}${time  %b}${offset -500}${voffset 70}${font Laconic:pixelsize=16:bold}${color FFA300}HD ${offset 9}$color${fs_free /} / ${fs_size /}${offset 30}${color FFA300}RAM ${offset 9}$color$mem / $memmax${offset 30}${color FFA300}CPU ${offset 9}$color${cpu cpu0}%
-
+conky.text = [[
 # BACKGROUND
 ${image ~/.conky/rev-eng.png}
 
-# KERNEL & UPTIME
-${offset 440}${voffset -20}${color ffff00}${conky_build_arch}
-${offset 440}${color ffff00}Uptime: ${color ffffff}${uptime}
+# DATE/TIME
+${offset 350}${voffset 20}${font Laconic:pixelsize=110:bld}${color slate grey}${time %Z }${color fa6973}${time %H:%M:%W}
+${offset 350}${voffset -30}${color slate grey}${font Laconic:pixelsize=80}${time %a, }${color EAEAEA}${time %e %B %G}
 
-# FS
-${offset 875}${voffset 95}${fs_bar 15,60 /} ${offset -60}${color f4732d}${font Laconic:size=10:bold}/root$color     ${font Laconic:size=12}${fs_used /} / ${fs_size /}
-${offset 875}${voffset}${fs_bar 15,60 /home} ${offset -60}${color f4732d}${font Laconic:size=10:bold}/home$color    ${font Laconic:size=12}${fs_used /home} / ${fs_size /home}
-${offset 875}${voffset}${swapbar 15,60 swap} ${offset -60}${color f4732d}${font Laconic:size=10:bold}swap$color     ${font Laconic:size=12}${swap} / ${swapfree}
+
+# KERNEL/UPTIME
+${offset 390}${voffset -160}${font Laconic:pixelsize=20:bold}${color ffA300}Linux ${color FFFF00}${kernel}   ${color FFA300}Uptime: ${color ffffff}${uptime}
+
+# HD/MEM
+${offset 390}${voffset -10}${font Laconic:pixelsize=20:bold}${color FFA300}HD ${offset 9}$color${fs_free /} / ${fs_size /}      ${color FFA300}RAM ${offset 9}$color$mem / $memmax   ${color FFA300}CPU ${offset 9}$color${cpu cpu0}%
+
+# USER/DISTRO
+${image ~/.conky/debian-logo.png -p 320,380 -s 60x60}
+${offset 440}${voffset 5}${font Laconic:pixelsize=20:bold}${exec whoami}@${nodename}
+${offset 440}${voffset 0}${color fa6973}${font Laconic:pixelsize=16:bold}Debian ${tail /etc/debian_version 1} (${machine})
+
+# CPU FREQ/TEMP
+${voffset -342}
+${offset 1160}${font Laconic:size=11:bold}${color ffff00}CPU Freq: ${color}@${freq_g (1)} GHz
+${offset 1160}${font Laconic:size=11:bold}${color ffff00}CPU Temp: ${color}${acpitemp} °F
 
 # CPU LINEAL GRAPH
-${voffset -65}
-${offset 390}${font Laconic:size=11:bold}${color ffff00}CPU Freq: ${color}@${freq_g (1)} GHz
-${offset 390}${font Laconic:size=11:bold}${color ffff00}CPU Temp: ${color}${acpitemp} °F
+# CPU0
+${offset 1160}${color ffffff}${cpugraph cpu0 26,200 b7b7b7 f4732d}
+${offset 1168}${voffset -26}${color f4732d}${font Laconic:size=10:bold}CPU0:$color ${top name 5} ${top cpu 5}
+${voffset -10}
+# CPU1
+${offset 1160}${color ffffff}${cpugraph cpu1 26,200 b7b7b7 f4732d}
+${offset 1168}${voffset -26}${color f4732d}${font Laconic:size=10:bold}CPU1:$color ${top name 5} ${top cpu 5}
+${voffset -10}
+# CPU2
+${offset 1160}${color ffffff}${cpugraph cpu2 26,200 b7b7b7 f4732d}
+${offset 1168}${voffset -26}${color f4732d}${font Laconic:size=10:bold}CPU2:$color ${top name 5} ${top cpu 5}
+${voffset -10}
+# CPU3
+${offset 1160}${color ffffff}${cpugraph cpu3 26,200 b7b7b7 f4732d}
+${offset 1168}${voffset -26}${color f4732d}${font Laconic:size=10:bold}CPU3:$color ${top name 5} ${top cpu 5}
 
-${offset 390}${color ffffff}${cpugraph cpu0 26,200 b7b7b7 f4732d}
-${offset 398}${voffset -26}${color f4732d}${font Laconic:size=10:bold}CPU0:$color ${top name 5} ${top cpu 5}
-${offset 390}${color ffffff}${cpugraph cpu1 26,200 b7b7b7 f4732d}
-${offset 398}${voffset -26}${color f4732d}${font Laconic:size=10:bold}CPU1:$color ${top name 5} ${top cpu 5}
+# FS
+${offset 950}${voffset 233}${font Laconic:size=12:bold}${fs_used /} / ${fs_size /}
+${offset 950}${voffset}${font Laconic:size=12:bold}${fs_used /run} / ${fs_size /run}
+${offset 950}${voffset}${font Laconic:size=12:bold}${swap} / ${swapfree}
 
 # MEM LINEAL GRAPH
-${offset 390}${memgraph 26,200 b7b7b7 f4732d}
-${offset 398}${voffset -26}${color f4732d}${font Laconic:size=10:bold}RAM:$color ${top_mem name 5} ${top_mem mem 5}
+${voffset -60}
+${offset 1222}${voffset -53}${memgraph 62,140 b7b7b7 f4732d}
+${offset 1230}${voffset -48}${color f4732d}${font Laconic:size=10:bold}RAM:$color ${top_mem name 5} ${top_mem mem 5}
 
-# LOAD GRAPH
-${offset 390}${color ffffff}${loadgraph 26,200 b7b7b7 f4732d}
-${offset 398}${voffset -26}${color f4732d}${font Laconic:size=10:bold}System Load:$color ${loadavg}
-
+${voffset -138}
 # NETWORK
-${if_up wlan0}
-${offset 390}${voffset -330}${color ffff00}${font Laconic:size=10:bold}Local IP wlan0: ${color}${addr wlan0}
-${offset 390}${color ffff00}Public IP: ${color}${execi 60 wget -O - -q icanhazip.com} ${color f4732d}Connections: ${offset 9}$color${tcp_portmon 1 65535 count}
+${if_up wlp2s0b1}
+${offset 760}${voffset 0}${color ffff00}${font Laconic:size=12:bold}Local IP wlp2s0b1: ${color}${addr wlp2s0b1}
+${offset 760}${color ffff00}Public IP: ${color}${execi 60 wget -O - -q icanhazip.com} ${color f4732d}Connections: ${offset 9}$color${tcp_portmon 1 65535 count}
 
-${offset 390}$color${downspeedgraph wlan0 26,200 b7b7b7 f4732d}
-${offset 398}${voffset -26}${color f4732d}${font Laconic:size=10:bold}Down: ${offset 9}$color${downspeed wlan0}/s
-${offset 390}$color${upspeedgraph wlan0 26,200 b7b7b7 ebff46}
-${offset 398}${voffset -26}${color ebff46}${font Laconic:size=10:bold}Up: ${offset 9}$color${upspeed wlan0}/s
+#${voffset 5}
+#${offset 710}$color${downspeedgraph wlp2s0b1 26,120 b7b7b7 f4732d}
+#${offset 718}${voffset -26}${color f4732d}${font Laconic:size=10:bold}Down: ${offset 9}$color${downspeed wlan0}/s
+#${voffset -10}
+#${offset 710}$color${upspeedgraph wlp2s0b1 26,120 b7b7b7 ebff46}
+#${offset 718}${voffset -26}${color ebff46}${font Laconic:size=10:bold}Up: ${offset 9}$color${upspeed wlan0}/s
 ${endif}
 
-# TODO
-${offset 40}${voffset -300}${font Laconic:pixelsize=30:bold}${color 4eafec}TO-DO List:$color
-${offset 200}${voffset -35}${font Laconic:pixelsize=14:bold}${color ffffff}${tail ~/TODO 10}
+# LOAD GRAPH
+${voffset 12}
+${offset 340}${color ffffff}${loadgraph 32,200 b7b7b7 f4732d}
+${offset 348}${voffset -34}${color f4732d}${font Laconic:size=10:bold}System Load:$color ${loadavg}
+
+# PROCESS LIST
+${offset 340}${voffset 5}${font Laconic:pixelsize=14:bold}${color 4eafec}Processes: ${running_processes}/${processes}
+
+# TODO LIST
+# ${offset 40}${voffset -250}${font Laconic:pixelsize=30:bold}${color 4eafec}TO-DO List:$color
+# ${offset 300}${voffset -35}${font Laconic:pixelsize=14:bold}${color ffffff}${tail ~/TODO 10}
+
+# SYSLOG
+${offset 340}${voffset -20}${font Laconic:pixelsize=14:bold}${color 4eafec}System Log:$color
+${offset 430}${voffset -15}${font Laconic:pixelsize=14}${color ffffff}${tail /var/log/syslog 1}
+]]
