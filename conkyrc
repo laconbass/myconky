@@ -1,4 +1,4 @@
--- vim: ts=4 sw=4 noet ai cindent syntax=lua
+-- vim: ts=5 sw=4 noet ai cindent syntax=lua
 --[[
 Conky, a system monitor, based on torsmo
 
@@ -101,29 +101,21 @@ ${offset 30}${font Laconic:size=11:bold}${color ffff00}CPU Freq: ${color}@${freq
 
 # CPU LINEAL GRAPH
 # CPU0
-${offset 7}${color ffffff}${cpugraph cpu0 26,235 b7b7b7 f4732d}
-${offset 30}${color f4732d}${font Laconic:size=10:bold}CPU0:$color ${top name 5} ${top cpu 5}
-
+${offset 7}${color ffffff}${cpugraph cpu0 36,235 b7b7b7 f4732d} ${color f4732d}${font Laconic:size=10:bold} CPU0
 # CPU1
-${offset 7}${color ffffff}${cpugraph cpu1 26,235 b7b7b7 f4732d}
-${offset 30}${color f4732d}${font Laconic:size=10:bold}CPU1:$color ${top name 5} ${top cpu 5}
-
+${offset 7}${color ffffff}${cpugraph cpu1 36,235 b7b7b7 f4732d} ${color f4732d}${font Laconic:size=10:bold} CPU1
 # CPU2
-${offset 7}${color ffffff}${cpugraph cpu2 26,235 b7b7b7 f4732d}
-${offset 30}${color f4732d}${font Laconic:size=10:bold}CPU2:$color ${top name 5} ${top cpu 5}
-
+${offset 7}${color ffffff}${cpugraph cpu2 36,235 b7b7b7 f4732d} ${color f4732d}${font Laconic:size=10:bold} CPU2
 # CPU3
-${offset 7}${color ffffff}${cpugraph cpu3 26,235 b7b7b7 f4732d}
-${offset 30}${color f4732d}${font Laconic:size=10:bold}CPU3:$color ${top name 5} ${top cpu 5}
+${offset 7}${color ffffff}${cpugraph cpu3 36,235 b7b7b7 f4732d} ${color f4732d}${font Laconic:size=10:bold} CPU3
 
 # FS
-${offset 955}${voffset -112}${font Laconic:size=10:bold}${fs_used /} / ${fs_size /}
+${offset 955}${voffset -53}${font Laconic:size=10:bold}${fs_used /} / ${fs_size /}
 ${offset 955}${voffset}${font Laconic:size=10:bold}${fs_used /run} / ${fs_size /run}
 ${offset 955}${voffset}${font Laconic:size=10:bold}${swap} / ${swapfree}
 
 # MEM LINEAL GRAPH
-${voffset -50}
-${offset 1222}${voffset -53}${memgraph 62,60 b7b7b7 f4732d}
+${offset 1222}${voffset -90}${memgraph 62,60 b7b7b7 f4732d}
 ${offset 1222}${voffset}${color f4732d}${font Laconic:size=10:bold}RAM:$color ${top_mem name 5} ${top_mem mem 5}
 
 ${voffset -187}
@@ -144,7 +136,7 @@ ${endif}
 ${offset 340}${voffset -48}${font Laconic:pixelsize=14:bold}${color 4eafec}Processes:  ${color ffffff}${running_processes}/${processes}
 
 # TOP PROCESS
-${offset 340}${voffset}${font Laconic:pixelsize=14:bold}${color 4eafec}Process Top:  ${color ffffff}${top name 5}
+${offset 340}${voffset}${font Laconic:pixelsize=14:bold}${color 4eafec}Process Top:  ${color ffffff}${top name 5}${top cpu 5}
 
 # LOAD GRAPH
 ${offset 340}${voffset}${color f4732d}${font Laconic:size=10:bold}System Load:$color ${loadavg}
