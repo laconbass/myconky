@@ -81,20 +81,21 @@ ${image ~/.conky/rev-eng.png}
 ${offset 350}${voffset 20}${font Laconic:pixelsize=110:bld}${color slate grey}${time %Z }${color fa6973}${time %H:%M:%W}
 ${offset 350}${voffset -30}${color slate grey}${font Laconic:pixelsize=80}${time %a, }${color EAEAEA}${time %e %B %G}
 
+# DISTRO
+${image ~/.conky/debian-logo.png -p 360,240 -s 60x60}
+${offset 440}${voffset -180}${color fa6973}${font Laconic:size=18:bold}Debian ${tail /etc/debian_version 1} (${machine})
 
 # KERNEL/UPTIME
-${offset 390}${voffset -160}${font Laconic:pixelsize=20:bold}${color ffA300}Linux ${color FFFF00}${kernel}   ${color FFA300}Uptime: ${color ffffff}${uptime}
+${offset 440}${voffset 14}${font Laconic:pixelsize=20:bold}${color ffA300}Linux ${color FFFF00}${kernel}   ${color FFA300}Uptime: ${color ffffff}${uptime}
 
 # HD/MEM
-${offset 390}${voffset -10}${font Laconic:pixelsize=20:bold}${color FFA300}HD ${offset 9}$color${fs_free /} / ${fs_size /}      ${color FFA300}RAM ${offset 9}$color$mem / $memmax   ${color FFA300}CPU ${offset 9}$color${cpu cpu0}%
+${offset 440}${voffset -10}${font Laconic:pixelsize=20:bold}${color FFA300}HD ${offset 9}$color${fs_free /} / ${fs_size /}      ${color FFA300}RAM ${offset 9}$color$mem / $memmax   ${color FFA300}CPU ${offset 9}$color${cpu cpu0}%
 
-# USER/DISTRO
-${image ~/.conky/debian-logo.png -p 320,380 -s 60x60}
+# USER
 ${offset 440}${voffset 5}${font Laconic:pixelsize=20:bold}${exec whoami}@${nodename}
-${offset 440}${voffset 0}${color fa6973}${font Laconic:pixelsize=16:bold}Debian ${tail /etc/debian_version 1} (${machine})
 
 # CPU FREQ/TEMP
-${voffset -342}
+${voffset -352}
 ${offset 1160}${font Laconic:size=11:bold}${color ffff00}CPU Freq: ${color}@${freq_g (1)} GHz
 ${offset 1160}${font Laconic:size=11:bold}${color ffff00}CPU Temp: ${color}${acpitemp} °F
 
@@ -116,19 +117,19 @@ ${offset 1160}${color ffffff}${cpugraph cpu3 26,200 b7b7b7 f4732d}
 ${offset 1168}${voffset -26}${color f4732d}${font Laconic:size=10:bold}CPU3:$color ${top name 5} ${top cpu 5}
 
 # FS
-${offset 950}${voffset 233}${font Laconic:size=12:bold}${fs_used /} / ${fs_size /}
-${offset 950}${voffset}${font Laconic:size=12:bold}${fs_used /run} / ${fs_size /run}
-${offset 950}${voffset}${font Laconic:size=12:bold}${swap} / ${swapfree}
+${offset 955}${voffset 234}${font Laconic:size=10:bold}${fs_used /} / ${fs_size /}
+${offset 955}${voffset}${font Laconic:size=10:bold}${fs_used /run} / ${fs_size /run}
+${offset 955}${voffset}${font Laconic:size=10:bold}${swap} / ${swapfree}
 
 # MEM LINEAL GRAPH
-${voffset -60}
+${voffset -50}
 ${offset 1222}${voffset -53}${memgraph 62,140 b7b7b7 f4732d}
 ${offset 1230}${voffset -48}${color f4732d}${font Laconic:size=10:bold}RAM:$color ${top_mem name 5} ${top_mem mem 5}
 
 ${voffset -138}
 # NETWORK
 ${if_up wlp2s0b1}
-${offset 760}${voffset 0}${color ffff00}${font Laconic:size=12:bold}Local IP wlp2s0b1: ${color}${addr wlp2s0b1}
+${offset 760}${voffset 0}${color ffff00}${font Laconic:size=12:bold}Local  IP: ${color}${addr wlp2s0b1}
 ${offset 760}${color ffff00}Public IP: ${color}${execi 60 wget -O - -q icanhazip.com} ${color f4732d}Connections: ${offset 9}$color${tcp_portmon 1 65535 count}
 
 #${voffset 5}
@@ -139,19 +140,18 @@ ${offset 760}${color ffff00}Public IP: ${color}${execi 60 wget -O - -q icanhazip
 #${offset 718}${voffset -26}${color ebff46}${font Laconic:size=10:bold}Up: ${offset 9}$color${upspeed wlan0}/s
 ${endif}
 
-# LOAD GRAPH
-${voffset 12}
-${offset 340}${color ffffff}${loadgraph 32,200 b7b7b7 f4732d}
-${offset 348}${voffset -34}${color f4732d}${font Laconic:size=10:bold}System Load:$color ${loadavg}
-
 # PROCESS LIST
-${offset 340}${voffset 5}${font Laconic:pixelsize=14:bold}${color 4eafec}Processes: ${running_processes}/${processes}
+${offset 340}${voffset -15}${font Laconic:pixelsize=14:bold}${color 4eafec}Processes: ${running_processes}/${processes}
 
-# TODO LIST
-# ${offset 40}${voffset -250}${font Laconic:pixelsize=30:bold}${color 4eafec}TO-DO List:$color
-# ${offset 300}${voffset -35}${font Laconic:pixelsize=14:bold}${color ffffff}${tail ~/TODO 10}
+# LOAD GRAPH
+${offset 340}${voffset -1}${color f4732d}${font Laconic:size=10:bold}System Load:$color ${loadavg}
+${offset 340}${color ffffff}${loadgraph 32,200 b7b7b7 f4732d}
+
+# TOP PROCESS
+${offset 340}${voffset -130}${font Laconic:pixelsize=14:bold}${color 4eafec}Process Top:$color
+${offset 445}${voffset -15}${font Laconic:pixelsize=14:bold}${color ffffff}${top name 5}
 
 # SYSLOG
-${offset 340}${voffset -20}${font Laconic:pixelsize=14:bold}${color 4eafec}System Log:$color
+${offset 340}${voffset 82}${font Laconic:pixelsize=14:bold}${color 4eafec}System Log:$color
 ${offset 430}${voffset -15}${font Laconic:pixelsize=14}${color ffffff}${tail /var/log/syslog 1}
 ]]
