@@ -103,21 +103,21 @@ ${offset 20}${font Laconic:size=11:bold}${color ffff00}CPU Temp: ${color}${acpit
 # CPU0
 ${offset 20}${color ffffff}${cpugraph cpu0 26,200 b7b7b7 f4732d}
 ${offset 28}${voffset -26}${color f4732d}${font Laconic:size=10:bold}CPU0:$color ${top name 5} ${top cpu 5}
-${voffset -10}
+
 # CPU1
 ${offset 20}${color ffffff}${cpugraph cpu1 26,200 b7b7b7 f4732d}
 ${offset 28}${voffset -26}${color f4732d}${font Laconic:size=10:bold}CPU1:$color ${top name 5} ${top cpu 5}
-${voffset -10}
+
 # CPU2
 ${offset 20}${color ffffff}${cpugraph cpu2 26,200 b7b7b7 f4732d}
 ${offset 28}${voffset -26}${color f4732d}${font Laconic:size=10:bold}CPU2:$color ${top name 5} ${top cpu 5}
-${voffset -10}
+
 # CPU3
 ${offset 20}${color ffffff}${cpugraph cpu3 26,200 b7b7b7 f4732d}
 ${offset 28}${voffset -26}${color f4732d}${font Laconic:size=10:bold}CPU3:$color ${top name 5} ${top cpu 5}
 
 # FS
-${offset 955}${voffset 22}${font Laconic:size=10:bold}${fs_used /} / ${fs_size /}
+${offset 955}${voffset -10}${font Laconic:size=10:bold}${fs_used /} / ${fs_size /}
 ${offset 955}${voffset}${font Laconic:size=10:bold}${fs_used /run} / ${fs_size /run}
 ${offset 955}${voffset}${font Laconic:size=10:bold}${swap} / ${swapfree}
 

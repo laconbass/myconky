@@ -2,7 +2,8 @@
 --                                 conky_grey.lua
 --
 --  author  : SLK
---  version : v2011062101
+--  modified: burzumishi
+--  version : v2016061901
 --  license : Distributed under the terms of GNU GPL version 2 or later
 --
 --==============================================================================
