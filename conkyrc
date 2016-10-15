@@ -96,7 +96,7 @@ ${offset 440}${voffset 5}${font Laconic:pixelsize=20:bold}${exec whoami}@${noden
 
 # CPU FREQ/TEMP
 ${voffset -140}
-${offset 30}${font Laconic:size=11:bold}${color ffff00}CPU Temp: ${color}${acpitemp} °F
+${offset 30}${font Laconic:size=11:bold}${color ffff00}CPU Temp: ${color}${acpitemp} °C
 ${offset 30}${font Laconic:size=11:bold}${color ffff00}CPU Freq: ${color}@${freq_g (1)} GHz
 
 # CPU LINEAL GRAPH

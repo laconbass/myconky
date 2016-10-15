@@ -1,0 +1,15 @@
+[Desktop Entry]
+Name=Conky
+GenericName=Conky
+X-GNOME-FullName=Conky System Monitor
+Comment=Highly configurable system monitor
+Keywords=system monitor; desktop;
+Exec=/usr/bin/conky
+Icon=
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GTK;GNOME;Utility;Accessibility;
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Product=conky
+X-GNOME-Bugzilla-Component=general
