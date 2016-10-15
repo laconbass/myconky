@@ -105,9 +105,9 @@ ${offset 7}${color ffffff}${cpugraph cpu0 36,235 b7b7b7 f4732d} ${color f4732d}$
 # CPU1
 ${offset 7}${color ffffff}${cpugraph cpu1 36,235 b7b7b7 f4732d} ${color f4732d}${font Laconic:size=10:bold} CPU1
 # CPU2
-${offset 7}${color ffffff}${cpugraph cpu2 36,235 b7b7b7 f4732d} ${color f4732d}${font Laconic:size=10:bold} CPU2
+--## ${offset 7}${color ffffff}${cpugraph cpu2 36,235 b7b7b7 f4732d} ${color f4732d}${font Laconic:size=10:bold} CPU2
 # CPU3
-${offset 7}${color ffffff}${cpugraph cpu3 36,235 b7b7b7 f4732d} ${color f4732d}${font Laconic:size=10:bold} CPU3
+--### ${offset 7}${color ffffff}${cpugraph cpu3 36,235 b7b7b7 f4732d} ${color f4732d}${font Laconic:size=10:bold} CPU3
 
 # FS
 ${offset 955}${voffset -53}${font Laconic:size=10:bold}${fs_used /} / ${fs_size /}
